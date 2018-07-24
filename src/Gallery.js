@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {
-  Card, CardColumns, CardImg, CardTitle, CardBody, CardSubtitle
-} from 'reactstrap';
+import {Card, CardBody, CardColumns, CardImg, CardSubtitle, CardTitle, Modal, ModalBody, ModalHeader} from 'reactstrap';
+import PostCarousel from "./PostCarousel";
 
 const ClientId = 'a7e081ef1fdf64e';
 const BaseUrl = 'https://api.imgur.com/3/';
@@ -22,14 +21,31 @@ const imgurFetch = requestUrl => {
 };
 
 class PostCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {modal: false};
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle() {
+    this.setState({modal: !this.state.modal});
+  }
+
   render() {
     return (
       <Card body inverse style={{backgroundColor: '#333', borderColor: '#333'}}>
-        <CardImg top width="100%" src={this.props.src} alt=""/>
+        <CardImg top width="100%" src={this.props.src} alt="" onClick={this.toggle}/>
         <CardBody>
           <CardTitle>{this.props.title}</CardTitle>
           <CardSubtitle>{this.props.tags}</CardSubtitle>
         </CardBody>
+
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.toggle}>{this.props.title}</ModalHeader>
+          <ModalBody>
+            <PostCarousel images={this.props.images}/>
+          </ModalBody>
+        </Modal>
       </Card>
     );
   }
@@ -80,7 +96,9 @@ class Gallery extends Component {
       .map(post => <PostCard key={post.id}
                              title={post.title}
                              src={post.images[0].link}
-                             tags={post.tags.map(t => `#` + t.name).join(' ')}/>);
+                             tags={post.tags.map(t => `#` + t.name).join(' ')}
+                             images={post.images}
+      />);
 
     return (
       <CardColumns>
