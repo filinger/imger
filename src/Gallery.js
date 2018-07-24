@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import {
+  Card, CardColumns, CardImg, CardTitle, CardBody
+} from 'reactstrap';
 
 const ClientId = 'a7e081ef1fdf64e';
 const BaseUrl = 'https://api.imgur.com/3/';
@@ -18,14 +21,15 @@ const imgurFetch = requestUrl => {
     .catch(e => console.log('Request failed', e))
 };
 
-class PostThumbnail extends Component {
+class PostCard extends Component {
   render() {
     return (
-      <div className="col-lg-3 col-md-4 col-xs-6">
-        <a className="d-block mb-4 h-100">
-          <img className="img-fluid img-thumbnail" src={this.props.src} alt=""/>
-        </a>
-      </div>
+      <Card body inverse style={{backgroundColor: '#333', borderColor: '#333'}}>
+        <CardImg top width="100%" src={this.props.src} alt=""/>
+        <CardBody>
+          <CardTitle>{this.props.title}</CardTitle>
+        </CardBody>
+      </Card>
     );
   }
 }
@@ -41,8 +45,12 @@ class Gallery extends Component {
     this.loadGallery()
   }
 
+  componentWillReceiveProps() {
+    this.loadGallery()
+  }
+
   loadGallery() {
-    imgurFetch(`gallery/${this.props.section.toLowerCase()}/${this.props.sort.toLowerCase()}/${this.props.window.toLowerCase()}?showViral=true&mature=true`)
+    imgurFetch(`gallery/${this.props.section.toLowerCase()}/${this.props.sorting.toLowerCase()}/${this.props.window.toLowerCase()}?showViral=true&mature=true`)
       .then(response => {
         this.setState({
           gallery: response.data
@@ -51,23 +59,21 @@ class Gallery extends Component {
   }
 
   render() {
-    const thumbnails = this.state.gallery
+    const cards = this.state.gallery
       .filter(post => post.images && post.images.length > 0)
-      .map(post => <PostThumbnail key={post.id} src={post.images[0].link}/>);
+      .map(post => <PostCard key={post.id} title={post.title} src={post.images[0].link}/>);
 
     return (
-      <main role="main" className="container">
-        <div className="row text-center text-lg-left">
-          {thumbnails}
-        </div>
-      </main>
+      <CardColumns>
+        {cards}
+      </CardColumns>
     );
   }
 }
 
 Gallery.defaultProps = {
   section: 'Hot',
-  sort: 'Viral',
+  sorting: 'Viral',
   window: 'Week',
   page: 1,
   tags: [],
