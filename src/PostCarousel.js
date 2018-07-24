@@ -39,11 +39,11 @@ class PostCarousel extends Component {
 
   render() {
     const {activeIndex} = this.state;
-    const slides = this.props.images.map((img) => {
+    const slides = this.props.images.map(img => {
       return (
         <CarouselItem onExiting={this.onExiting} onExited={this.onExited} key={img.id}>
           <img width="100%" src={img.link} alt=""/>
-          <CarouselCaption className="text-danger" captionText={img.description} captionHeader={img.title}/>
+          <CarouselCaption className="text-danger" captionText="" captionHeader=""/>
         </CarouselItem>
       );
     });
