@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Gallery from "./Gallery";
 import {
+  Button,
   Collapse,
   Navbar,
   NavbarToggler,
@@ -9,7 +10,7 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem, InputGroup, InputGroupAddon, Input, NavItem
 } from 'reactstrap';
 
 class App extends Component {
@@ -21,13 +22,17 @@ class App extends Component {
       navBarIsOpen: false,
       section: 'Hot',
       sorting: 'Viral',
-      window: 'Week'
+      window: 'Week',
+      tags: [],
+      search: ''
     };
 
     this.toggleNavBar = this.toggleNavBar.bind(this);
     this.changeSection = this.changeSection.bind(this);
     this.changeSorting = this.changeSorting.bind(this);
     this.changeWindow = this.changeWindow.bind(this);
+    this.changeTags = this.changeTags.bind(this);
+    this.changeSearch = this.changeSearch.bind(this);
   }
 
   toggleNavBar() {
@@ -46,6 +51,15 @@ class App extends Component {
     this.setState({window: e.currentTarget.textContent})
   }
 
+  changeTags(e) {
+    const re = /#\w+/g;
+    this.setState({tags: e.currentTarget.value.match(re)})
+  }
+
+  changeSearch(e) {
+    this.setState({search: e.currentTarget.value})
+  }
+
   render() {
     return (
       <div className="App">
@@ -55,6 +69,12 @@ class App extends Component {
             <NavbarToggler onClick={this.toggleNavBar}/>
             <Collapse isOpen={this.state.navBarIsOpen} navbar>
               <Nav className="ml-auto" navbar>
+                <NavItem>
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend"><Button>Tags</Button></InputGroupAddon>
+                    <Input placeholder="#cats #acid ..." onChange={this.changeTags}/>
+                  </InputGroup>
+                </NavItem>
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>{this.state.section}</DropdownToggle>
                   <DropdownMenu right>
@@ -77,6 +97,7 @@ class App extends Component {
                     <DropdownItem onClick={this.changeWindow}>Day</DropdownItem>
                     <DropdownItem onClick={this.changeWindow}>Week</DropdownItem>
                     <DropdownItem onClick={this.changeWindow}>Month</DropdownItem>
+                    <DropdownItem onClick={this.changeWindow}>All</DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
               </Nav>
@@ -84,7 +105,7 @@ class App extends Component {
           </Navbar>
         </div>
 
-        <Gallery section={this.state.section} sorting={this.state.sorting} window={this.state.window}/>
+        <Gallery {...this.state}/>
       </div>
     );
   }

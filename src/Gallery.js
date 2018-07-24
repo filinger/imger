@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-  Card, CardColumns, CardImg, CardTitle, CardBody
+  Card, CardColumns, CardImg, CardTitle, CardBody, CardSubtitle
 } from 'reactstrap';
 
 const ClientId = 'a7e081ef1fdf64e';
@@ -28,6 +28,7 @@ class PostCard extends Component {
         <CardImg top width="100%" src={this.props.src} alt=""/>
         <CardBody>
           <CardTitle>{this.props.title}</CardTitle>
+          <CardSubtitle>{this.props.tags}</CardSubtitle>
         </CardBody>
       </Card>
     );
@@ -39,18 +40,23 @@ class Gallery extends Component {
     super(props);
     this.state = {gallery: []};
     this.loadGallery = this.loadGallery.bind(this);
+    this.searchGallery = this.searchGallery.bind(this);
   }
 
   componentDidMount() {
-    this.loadGallery()
+    this.loadGallery(this.props.section, this.props.sorting, this.props.window)
   }
 
-  componentWillReceiveProps() {
-    this.loadGallery()
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.tags !== this.props.tags && this.props.tags && this.props.tags.length > 0) {
+      this.searchGallery(nextProps.tags)
+    } else {
+      this.loadGallery(nextProps.section, nextProps.sorting, nextProps.window)
+    }
   }
 
-  loadGallery() {
-    imgurFetch(`gallery/${this.props.section.toLowerCase()}/${this.props.sorting.toLowerCase()}/${this.props.window.toLowerCase()}?showViral=true&mature=true`)
+  loadGallery(section, sorting, window) {
+    imgurFetch(`gallery/${section.toLowerCase()}/${sorting.toLowerCase()}/${window.toLowerCase()}?showViral=true&mature=true`)
       .then(response => {
         this.setState({
           gallery: response.data
@@ -58,10 +64,23 @@ class Gallery extends Component {
       })
   }
 
+  searchGallery(tags) {
+    const query = 'title: ' + tags.map(t => t.replace('#', '')).join(' AND ');
+    imgurFetch(`gallery/search/${this.props.sorting.toLowerCase()}/${this.props.window.toLowerCase()}?q=${query}`)
+      .then(response => {
+        this.setState({
+          gallery: response.data
+        })
+      });
+  }
+
   render() {
     const cards = this.state.gallery
       .filter(post => post.images && post.images.length > 0)
-      .map(post => <PostCard key={post.id} title={post.title} src={post.images[0].link}/>);
+      .map(post => <PostCard key={post.id}
+                             title={post.title}
+                             src={post.images[0].link}
+                             tags={post.tags.map(t => `#` + t.name).join(' ')}/>);
 
     return (
       <CardColumns>
