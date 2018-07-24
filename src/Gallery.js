@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Card, CardBody, CardColumns, CardImg, CardSubtitle, CardTitle, Modal, ModalBody, ModalHeader} from 'reactstrap';
-import PostCarousel from "./PostCarousel";
+import {CardColumns} from 'reactstrap';
+import PostCard from "./PostCard";
 
 const ClientId = 'a7e081ef1fdf64e';
 const BaseUrl = 'https://api.imgur.com/3/';
@@ -19,37 +19,6 @@ const imgurFetch = requestUrl => {
     .then(r => r.json())
     .catch(e => console.log('Request failed', e))
 };
-
-class PostCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {modal: false};
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.setState({modal: !this.state.modal});
-  }
-
-  render() {
-    return (
-      <Card body inverse style={{backgroundColor: '#333', borderColor: '#333'}}>
-        <CardImg top width="100%" src={this.props.src} alt="" onClick={this.toggle}/>
-        <CardBody>
-          <CardTitle>{this.props.title}</CardTitle>
-          <CardSubtitle>{this.props.tags}</CardSubtitle>
-        </CardBody>
-
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>{this.props.title}</ModalHeader>
-          <ModalBody>
-            <PostCarousel images={this.props.images}/>
-          </ModalBody>
-        </Modal>
-      </Card>
-    );
-  }
-}
 
 class Gallery extends Component {
   constructor(props) {

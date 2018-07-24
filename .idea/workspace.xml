@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96165624-bdad-4270-9912-2cd6a7be6bb1" name="Default" comment="Add post">
-      <change afterPath="$PROJECT_DIR$/src/PostCarousel.js" afterDir="false" />
+    <list default="true" id="96165624-bdad-4270-9912-2cd6a7be6bb1" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/PostCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gallery.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gallery.js" afterDir="false" />
     </list>
@@ -30,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gallery.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Gallery.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Gallery.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="47" column="17" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
+            <state relative-caret-position="265">
+              <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -42,13 +42,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PostCarousel.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PostCard.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PostCard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PostCarousel.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PostCarousel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="207">
+              <caret line="55" column="42" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
               <folding>
-                <element signature="e#5#46#0" expanded="true" />
+                <element signature="e#0#39#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -103,6 +115,7 @@
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/PostCarousel.js" />
+        <option value="$PROJECT_DIR$/src/PostCard.js" />
         <option value="$PROJECT_DIR$/src/Gallery.js" />
       </list>
     </option>
@@ -200,7 +213,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1532375577822</updated>
-      <workItem from="1532375579377" duration="25579000" />
+      <workItem from="1532375579377" duration="25914000" />
     </task>
     <task id="LOCAL-00001" summary="Replace Bootstrap w/ Reactstrap;&#10;Move navbar rendering into App;">
       <created>1532456872947</created>
@@ -216,11 +229,18 @@
       <option name="project" value="LOCAL" />
       <updated>1532463305639</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Show post images on post click">
+      <created>1532465268490</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1532465268490</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25579000" />
+    <option name="totallyTimeSpent" value="25914000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
@@ -253,9 +273,13 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="Replace Bootstrap w/ Reactstrap;&#10;Move navbar rendering into App;" />
     <MESSAGE value="Implement tag search" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement tag search" />
+    <MESSAGE value="Show post images on post click" />
+    <option name="LAST_COMMIT_MESSAGE" value="Show post images on post click" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -372,22 +396,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gallery.js">
+    <entry file="file://$PROJECT_DIR$/src/PostCarousel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="47" column="17" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
+        <state relative-caret-position="207">
+          <caret line="55" column="42" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PostCarousel.js">
+    <entry file="file://$PROJECT_DIR$/src/PostCard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
           <folding>
-            <element signature="e#5#46#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gallery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
