@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Carousel, CarouselCaption, CarouselControl, CarouselIndicators, CarouselItem} from 'reactstrap';
 
-class PostCarousel extends Component {
+export class ImgPostSlides extends Component {
   constructor(props) {
     super(props);
     this.state = {activeIndex: 0};
@@ -63,8 +63,6 @@ class PostCarousel extends Component {
   }
 }
 
-PostCarousel.defaultProps = {
+ImgPostSlides.defaultProps = {
   images: []
 };
-
-export default PostCarousel;

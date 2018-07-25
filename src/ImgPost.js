@@ -12,10 +12,10 @@ import {
   ModalBody,
   ModalHeader
 } from 'reactstrap';
-import PostCarousel from "./PostCarousel";
-import ImgurAPI from "./ImgurAPI";
+import {ImgPostSlides} from "./ImgPostSlides";
+import {ImgAPI} from "./ImgAPI";
 
-class PostCard extends Component {
+export class ImgPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,7 +35,7 @@ class PostCard extends Component {
   }
 
   loadComments(id) {
-    ImgurAPI.get(`gallery/${id}/comments`)
+    ImgAPI.fetch(`gallery/${id}/comments`)
       .then(response => {
         this.setState({
           isOpen: true,
@@ -61,8 +61,10 @@ class PostCard extends Component {
         <Modal isOpen={this.state.isOpen} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>{this.props.title}</ModalHeader>
           <ModalBody>
-            <PostCarousel images={this.props.images}/>
+            <ImgPostSlides images={this.props.images}/>
+
             <br/>
+
             <ListGroup>
               {comments}
             </ListGroup>
@@ -72,5 +74,3 @@ class PostCard extends Component {
     );
   }
 }
-
-export default PostCard;
