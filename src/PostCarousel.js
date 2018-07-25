@@ -48,9 +48,13 @@ class PostCarousel extends Component {
       );
     });
 
+    const items = this.props.images.map(img => {
+      return {src: img.link}
+    });
+
     return (
       <Carousel activeIndex={activeIndex} next={this.next} previous={this.previous}>
-        <CarouselIndicators items={this.props.images} activeIndex={activeIndex} onClickHandler={this.goToIndex}/>
+        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex}/>
         {slides}
         <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous}/>
         <CarouselControl direction="next" directionText="Next" onClickHandler={this.next}/>
