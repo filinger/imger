@@ -51,7 +51,7 @@ class PostCard extends Component {
       </ListGroupItem>);
 
     return (
-      <Card body inverse style={{backgroundColor: '#333', borderColor: '#333'}}>
+      <Card body>
         <CardImg top width="100%" src={this.props.src} alt="" onClick={this.toggle}/>
         <CardBody>
           <CardTitle>{this.props.title}</CardTitle>
